@@ -2,7 +2,7 @@ import streamlit as st
 import time
 import os
 from backend.pipeline import submit_task, result
-from utils.audio_recorder import record_audio
+#from utils.audio_recorder import record_audio
 
 # -----------------------------
 # SESSION STATE
@@ -18,17 +18,7 @@ def start_recording():
 
 def stop_recording():
     st.session_state.recording = False
-
-    st.info("Recording audio...")
-
-    os.makedirs("data", exist_ok=True)
-    audio_path = "data/meeting.wav"
-
-    # 🎤 REAL recording (10 sec)
-    record_audio(audio_path, duration=10)
-
-    # 🚀 Send to backend pipeline
-    submit_task(audio_path)
+    st.warning("⚠️ Recording not supported on Streamlit Cloud. Use file upload.")
 
 # -----------------------------
 # UI HEADER
