@@ -1,17 +1,18 @@
 from transformers import pipeline
 
 summarizer = pipeline(
-"summarization",
-model="facebook/bart-large-cnn"
+    "text-generation",
+    model="gpt2"
 )
 
 def summarize_text(text):
 
-    summary = summarizer(
-        text,
-        max_length=50,
-        min_length=20,
-        do_sample=False
+    prompt = f"Summarize this meeting:\n{text}\nSummary:"
+
+    result = summarizer(
+        prompt,
+        max_length=100,
+        num_return_sequences=1
     )
 
-    return summary[0]["summary_text"]
+    return result[0]["generated_text"]
