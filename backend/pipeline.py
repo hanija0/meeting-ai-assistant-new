@@ -1,6 +1,6 @@
 import queue
 import threading
-from utils.audio_converter import convert_to_mono_wav
+#from utils.audio_converter import #convert_to_mono_wav
 
 # -----------------------------
 # GLOBALS
@@ -42,7 +42,7 @@ def worker():
                 from diarization.format_transcript import create_diarized_transcript
                 from summarization.summarizer import summarize_text
 
-                audio = convert_to_mono_wav(task["audio"])
+                audio = #convert_to_mono_wav(task["audio"])
                 # ---------------- TRANSCRIPTION ----------------
                 with lock:
                     result["status"] = "Transcribing..."

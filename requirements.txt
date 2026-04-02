@@ -3,7 +3,6 @@ vosk
 sounddevice
 soundfile
 numpy
-pydub
 transformers
 torch
 jiwer
