@@ -37,8 +37,6 @@ def worker():
             if task["type"] == "process":
 
                 from stt.vosk_transcriber import transcribe_audio
-                from diarization.diarize import diarize_audio
-                from diarization.format_transcript import create_diarized_transcript
                 from summarization.summarizer import summarize_text
 
                 audio = task["audio"]
@@ -55,17 +53,14 @@ def worker():
                     result["transcript"] = transcript
 
                 # ---------------- DIARIZATION ----------------
+                # ---------------- DIARIZATION (SKIPPED) ----------------
                 with lock:
-                    result["status"] = "Diarizing..."
+                    result["status"] = "Preparing transcript..."
 
-                segments = diarize_audio(audio)
-                print("DEBUG segments:", segments)
-
-                diarized = create_diarized_transcript(transcript, segments)
+                diarized = transcript
 
                 with lock:
                     result["diarized"] = diarized
-
                 # ---------------- SUMMARIZATION ----------------
                 with lock:
                     result["status"] = "Summarizing..."
