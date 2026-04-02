@@ -11,11 +11,9 @@ def transcribe_audio(audio_path):
     wf = wave.open(audio_path, "rb")
 
     if wf.getnchannels() != 1:
-        raise ValueError("Audio must be mono")
-
+        print("⚠️ Warning: audio is not mono, attempting anyway")
     if wf.getframerate() != 16000:
-        raise ValueError("Sample rate must be 16000")
-
+        print("⚠️ Warning: sample rate not 16k, may affect accuracy")
     rec = KaldiRecognizer(model, wf.getframerate())
 
     transcript = ""
