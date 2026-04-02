@@ -104,4 +104,4 @@ if uploaded_file is not None:
 # -----------------------------
 if result["status"] not in ["Idle", "Done"]:
     time.sleep(1)
-    st.rerun()
+    st.rerun()# force rebuild
